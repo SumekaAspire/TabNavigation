@@ -1,0 +1,184 @@
+
+ .tab-nav {
+  position: fixed;  
+  /* display: flex; */ /* if it is removed tab items are aligned center*/
+  /* flex-direction: column; */
+  top: 0;
+  left: 0;
+  justify-content: space-around;
+  background: rgb(121, 86, 121); 
+  padding: 12px;
+  /* align-items: center; */
+  width: 100%;
+  padding: 12px;
+  padding-bottom: 25px;
+  z-index: 1000; /* it is above other elements */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  
+ 
+}
+
+.tab-link {
+  text-decoration: none;
+  color: #0d0d0d;
+  font-weight: bold;
+  padding: 10px 16px;
+  border-radius: 6px;
+  /* flex: 1; */
+  /* text-align: center; */
+}
+
+.tab-link.active {
+  background-color: #5c93c9;
+  color: white;
+}
+
+.tab-content {
+  margin-top: -20px;
+  padding: 20px;
+  padding-top: 65px;
+  /* min-height: 100vh; */
+  
+}
+
+.tab-link:hover {
+  color: rgb(239, 174, 9);
+} 
+
+.tab-page {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  
+}
+.tab-page:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  color: rgb(177, 78, 78);
+  background-color: rgb(180, 208, 245);
+}
+   
+
+.nav-header {
+  color: rgb(36, 16, 16);
+  font-size: 24px;
+  font-weight: bold;
+  margin:15px;
+  margin-bottom: 5px;
+  padding-bottom: 10px;
+}
+
+/* .footer {
+  text-align: center;
+  padding: 16px;
+  background: rgb(196, 175, 196); 
+  color: #080808;
+  position: relative; 
+  left: 0;
+  bottom: 0;
+  right:0
+   width: 100%; 
+  font-size: 14px; 
+
+} */
+
+.footer {
+  text-align: center;
+  padding: 16px;
+  background: rgb(196, 175, 196); 
+  color: #080808;
+  position: fixed; 
+  left: 0;
+  bottom: 0;
+  right:0
+   /* width: 100%; 
+  font-size: 14px; */
+
+}
+
+
+
+/*.footer {
+  text-align: center;
+  padding: 16px;
+  background:rgb(121, 86, 121);
+  color: #080808;
+   position: fixed;  
+  width: 100%;
+  margin-bottom: 0;
+  font-size: 14px;
+  z-index: 1000; 
+   it is placed above other elements 
+  
+}*/
+
+.footer-container{
+    margin: -3.3rem;
+    padding: 30px;
+}
+
+ /* Container for product cards */
+.product-alignment {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  padding:50px;
+
+}
+
+/* Individual product card */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 220px;
+  min-height: 290px; /* consistent height */
+  padding: 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #efebef;
+}
+
+/* Product image */
+.product-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+/* Title */
+.product-card h4 {
+  font-size: 14px;
+  margin: 15px 0;
+  flex-grow: 1; /* push button to bottom if title is short */
+}
+
+/* Price */
+.product-card p {
+  margin: 8px 0;
+  font-size: 16px;
+  color:chocolate;
+}
+
+/* Button */
+.product-card button {
+  margin: 8px;
+  padding: 10px 10px;
+  background-color:  rgb(93, 45, 106) ;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.product-card button:hover {
+  background-color: rgb(121, 86, 121);
+}
