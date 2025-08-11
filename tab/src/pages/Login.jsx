@@ -9,8 +9,9 @@ const Login = () => {
     const onSubmit=(data)=>{
         console.log(data);
          if (data.username === "sumeka" && data.password === "1234567$") {
-         console.log("Login successful");
-         console.log(data);
+         console.log("Login successful"+ data);
+         localStorage.setItem("isLoggedIn", 'true');
+         localStorage.setItem('username', data.username)
          navigate("/home/about");
          } else {
           alert("Invalid credentials");
@@ -79,7 +80,7 @@ const Login = () => {
         </p>
 
       </form>
-        <ToastContainer position='="top-center' autoClose={3000}/>
+        <ToastContainer position='top-center' autoClose={3000}/>
     </div>
   )
 }
