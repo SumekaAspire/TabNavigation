@@ -1,6 +1,10 @@
 import React from 'react'
-
+import { useState } from 'react';
+import ProfileContent from './Profile/ProfileContent';
+import ProfileMenu from './Profile/ProfileMenu';
 const Profile = () => {
+    const [activeTab, setActiveTab] = useState('overview');
+
   return (
     <div >Profile -  welcome to profile page.
         <div> 
@@ -14,7 +18,13 @@ const Profile = () => {
           </p> 
 
         </div> 
- 
+              
+      
+      {/* also use display as 'grid' */}
+      <div style={{ display: 'flex', height: '60vh', margin:'50px'}}>
+      <ProfileMenu activeTab={activeTab} onTabChange={setActiveTab} />
+      <ProfileContent activeTab={activeTab} />
+    </div> 
     </div>
   )
 }
