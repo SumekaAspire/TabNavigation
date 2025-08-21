@@ -13,25 +13,32 @@ const CartPage = () => {
     }
 
   return (
-    <div>
-        <h2>Shopping Cart!!</h2>
+   <div>
+     <h2>Shopping Cart!!</h2>
+     <div className='cart-container'>
         {cart.map((item)=> (
-           <div key={item.id} style={{ marginBottom: "10px" }}>
-                <img src={item.image} alt={item.title} width="50" />
-                <span>Item:{item.title}</span><br/>
-                <span>{item.quantity}</span><br/>
-                <span>Price(₹): {item.price * item.quantity}</span><br/>
-                <a onClick={()=> removeFromCart(item.id)} style={{color:'black', cursor:'pointer'}}>Remove</a>
+        //    <div key={item.id} style={{ marginBottom: "10px" }}>
+                <div key={item.id} className='cart-item'>
+
+                {/* <img src={item.image} alt={item.title} width="50" /> */}
+                <img src={item.image} alt={item.title}/>
+               <span>Item:{item.title}</span>
+                <span>{item.quantity}</span>
+                <span>Price(₹): {item.price * item.quantity}</span>
+                <a onClick={()=> removeFromCart(item.id)}>Remove</a>
                 {/* <button onClick={()=> removeFromCart(item.id)}>Remove</button> */}
             </div>
         ))
         }
-        <h3 className='totalAmount'>Total:  ₹{totalAmount.toFixed(2)}</h3>
+        {/* <h3 className='totalAmount'>Total:  ₹{totalAmount.toFixed(2)}</h3> */}
+      
+    </div>
+      <h3>Total:  ₹{totalAmount.toFixed(2)}</h3>
         <button onClick={clearCart} style={{marginRight:"12px"}}>Clear Cart</button>
         <button onClick={handleCheckout}>Proceed to Checkout</button>
          <ToastContainer position='top-center' autoClose={3000}/>
 
-    </div>
+   </div>
   )
 }
 
