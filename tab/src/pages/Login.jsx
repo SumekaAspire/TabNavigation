@@ -1,6 +1,6 @@
 import React from 'react'
 import {useForm} from 'react-hook-form'
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer,toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 const Login = () => {
 
@@ -9,11 +9,12 @@ const Login = () => {
     const onSubmit=(data)=>{
         console.log(data);
          if (data.username === "sumeka" && data.password === "1234567$") {
-         console.log("Login successful");
-         console.log(data);
+         console.log("Login successful"+ data);
+         localStorage.setItem("isLoggedIn", 'true');
+         localStorage.setItem('username', data.username)
          navigate("/home/about");
          } else {
-          alert("Invalid credentials");
+          toast.error("Invalid credentials");
          }
     }
 
@@ -79,7 +80,7 @@ const Login = () => {
         </p>
 
       </form>
-        <ToastContainer position='="top-center' autoClose={3000}/>
+        <ToastContainer position='top-center' autoClose={3000}/>
     </div>
   )
 }

@@ -39,3 +39,43 @@
 .slick-next:before {
   display: none;
 }
+.tab-nav {
+  position: fixed;  
+  /* display: flex; */ /* if it is removed tab items are aligned center*/
+  /* flex-direction: column; */
+  top: 0;
+  left: 0;
+  justify-content: space-around;
+  background: rgb(121, 86, 121); 
+  padding: 12px; 
+  /* align-items: center; */
+  width: 100%;
+  padding: 12px;
+  padding-bottom: 25px;
+  z-index: 1000; /* it is above other elements */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  
+ 
+}
+
+
+
+ .tab-nav {
+  position: fixed;  
+  display: flex;  /* if it is removed tab items are aligned center*/
+  /* flex-direction: column; */
+  top: 0;
+  left: 0;
+  justify-content: space-between;
+  background: rgb(121, 86, 121); 
+  padding: 12px 20px; 
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 12px;
+  padding-bottom: 25px;
+  z-index: 1000; /* it is above other elements */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  
+ 
+}

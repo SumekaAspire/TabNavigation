@@ -85,8 +85,8 @@ const SignUp= () => {
                  message: "Password must be 8 characters",
              },
             pattern: {
-                   value: /^(?=.*[0-9])(?=.*[!@#$%^&*])/,
-                   message: "Password must contain at least 1 number and 1 special character",
+                   value: /^(?=.*\d)(?=.*[!@#$%^&*])(?!.*\s).{8}$/,
+                   message: "Password must contain at least 1 number and 1 special character, no spaces",
            },
             // validate: (value) => {
             //     value.includes("@") || "Password must include '@'"

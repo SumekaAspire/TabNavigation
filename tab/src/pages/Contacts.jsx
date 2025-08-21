@@ -18,7 +18,8 @@ const Contacts = () => {
           Our mission is to empower our customers by delivering exceptional
           products/services that enhance their lives and businesses. We strive
           to create value through innovation, integrity, and a commitment to
-          excellence in everything we do.
+          excellence in everything we do.excellence in everything we do.
+          
         </p>
       </div>
  <br/>

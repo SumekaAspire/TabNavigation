@@ -1,11 +1,13 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import "../css/HomePage.css";
+import React, { useContext, useEffect, useState } from 'react';
+import "../../css/HomePage.css";
+import { CartContext } from '../../context/CartContext';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const {addToCart} = useContext(CartContext);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -36,7 +38,7 @@ const Products = () => {
             <h4>{product.title}</h4>
             <p><strong>₹{product.price}</strong></p> 
             {/* strong - screen readers and seo friendly */}
-            <button>Add to Cart</button>
+            <button onClick={() => addToCart(product)}>Add to Cart</button>
           </div>
         ))}
       </div>
