@@ -1,6 +1,6 @@
 import React from 'react'
 import {useForm} from 'react-hook-form'
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer,toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 const Login = () => {
 
@@ -14,7 +14,7 @@ const Login = () => {
          localStorage.setItem('username', data.username)
          navigate("/home/about");
          } else {
-          alert("Invalid credentials");
+          toast.error("Invalid credentials");
          }
     }
 
