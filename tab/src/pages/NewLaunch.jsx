@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useFetch from './CustomHooks/useFetch';
 import { CartContext } from '../context/CartContext';
+import ProductsPagination from '../Pagination/ProductsPagination';
 
 const NewLaunch = () =>{
 const { addToCart } = useContext(CartContext);
@@ -90,7 +91,7 @@ const { addToCart } = useContext(CartContext);
       </div>
       <br /><br />
 
-      <h2>Items</h2>
+      {/* <h2>Items</h2>
       <div className="product-alignment">
         {product.products.map((product) => (
           <div key={product.id} className="product-card">
@@ -101,7 +102,10 @@ const { addToCart } = useContext(CartContext);
           </div>
         ))}
       </div>
-      <br /><br />
+      <br /><br /> */}
+
+      <h2>Items</h2>
+      <ProductsPagination items={product.products} itemsPerPage={8} addToCart={addToCart}/>
 
      </div>
 
