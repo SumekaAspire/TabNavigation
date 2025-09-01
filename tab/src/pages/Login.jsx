@@ -9,7 +9,9 @@ const Login = () => {
     const onSubmit=(data)=>{
         console.log(data);
          if (data.username === "sumeka" && data.password === "1234567$") {
-         console.log("Login successful"+ data);
+         console.log("Login successful", data); // object of data
+        //  console.log("Login successful", JSON.stringify(data));
+
          localStorage.setItem("isLoggedIn", 'true');
          localStorage.setItem('username', data.username)
          navigate("/home/about");

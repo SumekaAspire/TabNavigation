@@ -19,6 +19,8 @@ import NewLaunch from "./pages/NewLaunch";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 import CartPage from "./pages/Cart/CartPage";
 import { CartProvider } from "./context/CartContext";
+import { ToastContainer } from "react-toastify";
+
 
 function App() {
   return (
@@ -58,6 +60,9 @@ function App() {
           <Route path="cart" element={<CartPage/>}/>
         </Route>
       </Routes>
+
+      <ToastContainer position="top-right" autoClose={3000} />
+
     </Router>
     </CartProvider>
   );
