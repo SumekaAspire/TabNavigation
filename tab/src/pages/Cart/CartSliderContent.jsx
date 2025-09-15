@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const CartSliderContent = () => {
   const { cart, removeFromCart, clearCart, increaseQty, decreaseQty } =
     useContext(CartContext);
+  const navigate =useNavigate();
 
   const totalAmount = cart.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -14,7 +16,10 @@ const CartSliderContent = () => {
   if (cart.length === 0) return <h2> Your cart is Empty. </h2>;
 
   const handleCheckout = () => {
-    toast.success("Your order will be placed.");
+    // toast.success("Your order will be placed.");
+        toast.success("Redirecting to payment...");
+        navigate("/home/payment");
+
   };
 
   return (
