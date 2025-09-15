@@ -1,26 +1,70 @@
 .main-content{
   flex: 1;
   /* push the footer down, keeping it always after all content. */
-  padding-top: 30px;
   padding-bottom: 60px;
   overflow-x: hidden;
 }
 
+.top-offerBanner{
+  position:fixed;
+  top: 0;
+  left:0;
+  right:0;
+  z-index: 1100;
+  background-color: #0e0e0e;
+  height:25px;
+  padding:5px;
+  /* border: 1px solid #ed2828; */
+}
+.bannerView{
+   margin: 0;
+   font-size: 14px;
+   font-weight: 700;
+   color:#fff;
+   text-align: center;
+}
 
+.prevArrow{
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      background: none;
+      color: white;
+      cursor: pointer;
+      outline: none !important;
+      border:none;
+  
+}
 
+.nextArrow{
+  position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      background:none;
+      color: white;
+      cursor: pointer;
+      outline: none !important;
+      border:none;
+
+}
 
 .tab-nav {
   position: fixed;
-  top: 0;
+  top: 35px;
   left: 0;
   right: 0;
   background: rgb(121, 86, 121);
-  padding: 12px 24px;
+  padding:2px 24px;
   z-index: 1000;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* border: 5px solid #f03013 */
 }
 
 /* wrapper for nav links row*/
@@ -29,9 +73,36 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  position: relative;
+  position: relative;  
   
 }
+
+.tab-logo{
+  /* border:1px solid #ede8e8; */
+  /* padding: 1px; */
+  color: #1e1c1c;
+
+  
+}
+.nav-logo {
+  color: #fff;
+  font-size: 2px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  color: inherit;
+  
+
+}
+
+.logo-img {
+  height: 45px;   
+  cursor: pointer;
+  border-radius: 50rem;
+  border:5px solid #090707;
+
+}
+
 
 
 /* keep left links inline */
@@ -39,9 +110,11 @@
   display: flex;
   gap: 12px;
   margin :0  auto;
-  /* margin-left: 30rem; */
-  justify-content: center; /* keeps them in center */
+  margin-left: 2rem;
+  justify-content:center; /* keeps them in center */
   flex-wrap: wrap;
+  /* border:1px solid #d91111; */
+
   /* flex: 1;  */
 }
 
@@ -52,6 +125,8 @@
   align-items: center;
   right: 24px;
   gap: 30px;
+  /* border:1px solid #fff; */
+
 }
 
 .logout-btn {
@@ -82,8 +157,8 @@
 }
 
 .tab-content {
-  margin-top: 60px;
-  padding-top: 60px;
+  margin-top: 108px;
+  padding-top: 0px;
   min-height: 100vh; 
   display: flex;
   flex-direction: column;  
@@ -119,13 +194,28 @@
    
 
 .nav-header {
-  color: rgb(36, 16, 16);
+  display: flex;
+  flex-direction: row;
+  color: rgb(6, 6, 6);
   font-size: 24px;
-  font-weight: bold;
-  margin:15px;
+  /* font-weight: bold; */
+  /* margin:15px; */
   margin-bottom: 5px;
-  padding-bottom: 10px;
+  /* padding-top: 17px; */
+  /* padding: 5px; */
+  gap: 10px;
+  /* border: 1px solid; */
+  height: 4rem;
+  align-items: center;  
 }
+
+.nav-header:visited,
+.nav-header:hover,
+.nav-header:active {
+  color: inherit; 
+  text-decoration: none;
+}
+
 
 /* .footer {
   text-align: center;
@@ -161,15 +251,32 @@
     margin: -2.05rem;
     /* padding: 30px; */
 }
+
+.body-contentNewLaunch {
+  margin-top: -7rem;
+  padding-top: 0px;
+  /* min-height: 100vh; */
+  display: flex;
+  flex-direction: column;  
+
+}
+
+
  /* Container for product cards */
 .product-alignment {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
   justify-content: center;
-  padding:30px;
+  padding: 5rem;
 
 }
+.wishlist-icon {
+  display: flex;
+  justify-content: right; 
+  cursor: pointer; 
+}
+
 
 /* Individual product card */
 .product-card {
@@ -405,6 +512,41 @@
   font-size: 14px;
   cursor: pointer;
   margin-left: 12px;
+}
+
+
+
+/* DropDown */
+.dropdown {
+  position: relative;
+  display:flex;
+  align-items: center;
+  
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left:50%;
+  transform: translateX(-50%); 
+  background:  rgb(121, 86, 121);
+  min-width: 200px;
+  z-index: 100;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dropdown-content .tab-link {
+  padding: 5px;
+  color: #1e1c1c;
+  text-decoration: none;
+}
+
+.dropdown-content .tab-link:hover {
+  /* background: #e0dae4; */
+  color:#fcfafa;
 }
 
 
