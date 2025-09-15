@@ -6,10 +6,10 @@ const Profile = () => {
     const [activeTab, setActiveTab] = useState('overview');
 
   return (
-    <div >Profile -  welcome to profile page.
+    <div style={{paddingTop:"40px"}}>Profile -  welcome to profile page.
         <div> 
          
-        <p>
+        <p style={{margin:"25px"}}> 
           We envision a world where everyone has access to sustainable and
           innovative solutions that improve their quality of life. At our
           Company, we aim to lead the way in our industry by setting new
