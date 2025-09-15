@@ -5,13 +5,15 @@ import "slick-carousel/slick/slick-theme.css";
 import useFetch from './CustomHooks/useFetch';
 import { CartContext } from '../context/CartContext';
 import ProductsPagination from '../Pagination/ProductsPagination';
+import WishlistIcon from './Wishlist/WishlistIcon';
+import ProductModal from "../Modal/ProductDetailModal";
 
 const NewLaunch = () =>{
 const { addToCart } = useContext(CartContext);
 
 
   const[product,loading, error] = useFetch({url: "https://dummyjson.com/products"})
-  const [electronics, loadingElectronics, errorElectronics] = useFetch({url: "https://fakestoreapi.com/products/category/electronics?limit=6",});
+  const [electronics, loadingElectronics, errorElectronics] = useFetch({url: "https://fakestoreapi.com/products/category/electronics?limit=5",});
   const [jewelery, loadingJewelery, errorJewelery] = useFetch({url: "https://fakestoreapi.com/products/category/jewelery?limit=4",});
 
 
@@ -36,15 +38,44 @@ const { addToCart } = useContext(CartContext);
   "https://picsum.photos/id/1018/600/400",
   "https://picsum.photos/id/1019/600/400",
   "https://picsum.photos/id/1020/600/400",
+  "https://picsum.photos/id/1018/600/400",
 
   ];
 
   return (
-   <div>
-    <h2>Newly Launched</h2> <br/>
+   <div className='body-contentNewLaunch'>  
+  <style>{`
+    .slick-dots {
+      bottom: 30px !important;
+    }
+    .slick-dots li button:before {
+      font-size: 12px;
+      color: #fff;
+    }
+    .slick-dots li.slick-active button:before {
+      color: black;
+    }
+  `}</style>
 
+      <div style={{ maxWidth: "100vw"}}>
+      <Slider {...settings}>
+        {images.map((img, index) => (
+          <div key={index}>
+            <img
+              src={img}
+              alt={`Slide ${index}`}
+              style={{ width: "100vw",objectFit: "cover", height:"70vh"}}
+            />
+          </div>
+        ))}
+      </Slider>
+      </div><br/><br/><br/> 
+
+
+    {/* <h2>Newly Launched</h2> <br/>
     <div className='cart-container'>
-      <div style={{ maxWidth: "800px", margin: "auto", padding: "20px" }}>
+      
+      <div style={{ maxWidth: "800px", margin: "auto", padding: "10px" }}>
 
       <Slider {...settings}>
         {images.map((img, index) => (
@@ -57,19 +88,19 @@ const { addToCart } = useContext(CartContext);
           </div>
         ))}
       </Slider>
-      
+    
     </div>
-   </div>
+   </div> */}
 
 
 
     
     <h2>Newly Launched Products</h2>
-     <div>
       <h2>Electronics</h2>
      <div className="product-alignment">
         {electronics.map((product) => (
           <div key={product.id} className="product-card">
+            <WishlistIcon product={product}/>
             <img src={product.thumbnail} alt={product.title} />
             <h4>{product.title}</h4>
             <p><strong>₹{product.price}</strong></p> 
@@ -77,11 +108,12 @@ const { addToCart } = useContext(CartContext);
           </div>
         ))}
       </div>
-      <br /><br />
+      
       <h2>Jewellery</h2>
 <div className="product-alignment">
         {jewelery.map((product) => (
           <div key={product.id} className="product-card">
+              <WishlistIcon product={product}/>
             <img src={product.thumbnail} alt={product.title} />
             <h4>{product.title}</h4>
             <p><strong>₹{product.price}</strong></p> 
@@ -89,8 +121,7 @@ const { addToCart } = useContext(CartContext);
           </div>
         ))}
       </div>
-      <br /><br />
-
+      
       {/* <h2>Items</h2>
       <div className="product-alignment">
         {product.products.map((product) => (
@@ -102,32 +133,17 @@ const { addToCart } = useContext(CartContext);
           </div>
         ))}
       </div>
-      <br /><br /> */}
-
+    */}
       <h2>Items</h2>
-      <ProductsPagination items={product.products} itemsPerPage={8} addToCart={addToCart}/>
+      <ProductsPagination items={product.products} itemsPerPage={8} addToCart={addToCart}/><br/>
+
 
      </div>
 
 
-   </div>
   );
 };
 
 
 
 export default NewLaunch
-
-const sliderWrapper = {
-  width: "100vw",          // full width of the viewport
-  margin: "0 auto",
-  padding: "0px",
-  overflow: "hidden",      // prevent horizontal scroll
-};
-
-const imageStyle = {
-  width: "100%",           
-  height: "400px",         
-  objectFit: "cover",
-  borderRadius: "0px"
-};

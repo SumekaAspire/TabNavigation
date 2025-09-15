@@ -1,0 +1,84 @@
+/* Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal card */
+.modal-card {
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Close button */
+.modal-card button.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Product image */
+.modal-card img {
+  max-width: 150px;
+  margin-bottom: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Title */
+.modal-card h3 {
+  margin: 10px 0;
+  font-size: 20px;
+  text-align: center;
+}
+
+/* Price */
+.modal-card p strong {
+  color: #222;
+  font-size: 18px;
+}
+
+/* Ratings */
+/* .modal-card .ratings {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #444;
+  margin-top: 8px;
+} */
+
+/* Add to cart button */
+.modal-card button.add-cart {
+  margin-top: 15px;
+  padding: 10px 15px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.modal-card button.add-cart:hover {
+  background: #333;
+}

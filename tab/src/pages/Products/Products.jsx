@@ -2,12 +2,19 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import "../../css/HomePage.css";
 import { CartContext } from '../../context/CartContext';
+import {FaRegHeart, FaHeart } from "react-icons/fa"; 
+import { WishlistContext } from '../../context/WishlistContext';
+import ProductModal from "../../Modal/ProductDetailModal";
+
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const {addToCart} = useContext(CartContext);
+  const { wishlist, addToWishlist, removeFromWishlist } =  useContext(WishlistContext);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
 
   useEffect(() => {
     const getProducts = async () => {
@@ -32,16 +39,50 @@ const Products = () => {
     <div>
       <h2>All Products</h2>
       <div className="product-alignment">
-        {products.map((product) => (
-          <div key={product.id} className="product-card">
+        {products.map((product) => {
+        const isWishlisted = wishlist.some((item) => item.id === product.id);
+         return(
+             <div 
+               key={product.id}
+               className="product-card"
+               onClick={() => setSelectedProduct(product)} // open modal
+               style={{ cursor: "pointer" }}> 
+          
+            {/* <FaRegHeart size={18}/> */}
+           <span
+                className="wishlist-icon"
+                onClick={(e) =>{
+                  e.stopPropagation();
+                  isWishlisted
+                    ? removeFromWishlist(product.id)
+                    : addToWishlist(product)
+                }
+                }
+              >
+                {isWishlisted ? (
+                  <FaHeart color="red" size={20} />
+                ) : (
+                  <FaRegHeart size={20} />
+                )}
+              </span>
             <img src={product.image} alt={product.title} />
             <h4>{product.title}</h4>
             <p><strong>₹{product.price}</strong></p> 
             {/* strong - screen readers and seo friendly */}
-            <button onClick={() => addToCart(product)}>Add to Cart</button>
+            <button onClick={(e) => {
+              e.stopPropagation();
+              addToCart(product);}
+            }>Add to Cart</button>
           </div>
-        ))}
+         )
+      
+})}
       </div>
+      {/* ProductDetailModal */}
+      <ProductModal
+        product={selectedProduct}
+        onClose={() => setSelectedProduct(null)}
+      />
       <br /><br />
     </div>
   );

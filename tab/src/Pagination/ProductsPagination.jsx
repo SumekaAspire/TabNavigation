@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import WishlistIcon from '../pages/Wishlist/WishlistIcon';
 
 const ProductsPagination = ({items,itemsPerPage, addToCart}) => {
     const[currentPage, setCurrentPage] = useState(1);
@@ -15,6 +16,7 @@ const ProductsPagination = ({items,itemsPerPage, addToCart}) => {
         <div className="product-alignment">
         {currentItems.map((product) => (
           <div key={product.id} className="product-card">
+            <WishlistIcon product={product}/>
             <img src={product.thumbnail} alt={product.title} />
             <h4>{product.title}</h4>
             <p><strong>₹{product.price}</strong></p> 
