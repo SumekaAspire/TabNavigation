@@ -3,18 +3,13 @@ import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
 
 const PaymentPage = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
   const onSubmit = async (data) => {
-    // data = { phone: '...', paymentMethod: 'UPI'/'COD' }
-    toast.success("✅ Payment Successful!");
+    toast.success("Payment Successful!");
+    reset();
+
     
-    // call backend to send SMS
-    await fetch("http://localhost:5000/send-sms", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
   };
 
   return (
