@@ -1,9 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
+import "../../css/Cart.css"
+import { useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa"; 
 
 const PaymentPage = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     toast.success("Payment Successful!");
@@ -13,18 +17,30 @@ const PaymentPage = () => {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "50px auto", textAlign: "center" }}>
-      <h2>Payment</h2>
+   <div className="layout">
+     <div className="backbtn-alignment">
+         <button 
+         className="btn-back"
+         onClick={()=> navigate(-1)}
+      >
+        <FaArrowLeft size={20}/>Back
+      </button>
+
+     </div>
+     <div className="payment-content">
+        {/* back button */}
+    
+      <h2>Payment - Delivery</h2>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Mobile Number */}
-        <div style={{ marginBottom: "20px" }}>
-          <label style={{ fontWeight: "bold" }}>Mobile Number</label>
+        <div className="form-mobileno">
+          <label className="bold">Mobile Number: </label>
           <input
             type="tel"
             placeholder="Enter mobile number"
             maxLength={10}
-            minLength={10}
+            minLength={10} 
             {...register("phone", {
               required: "Mobile number is required",
               pattern: {
@@ -32,63 +48,54 @@ const PaymentPage = () => {
                 message: "Invalid mobile number",
               },
             })}
-            style={{
-              width: "90%",
-              padding: "10px",
-              marginTop: "8px",
-              border: errors.phone ? "1px solid red" : "1px solid #221f1fff",
-            }}
+            className="inputfield-mobileno"
           />
-          {errors.phone && <p style={{ color: "red" }}>{errors.phone.message}</p>}
+          {errors.phone && <p className="errorcolor">{errors.phone.message}</p>}
         </div>
 
         {/* Payment Methods */}
-        <div style={{ textAlign: "left", marginBottom: "20px" }}>
-          <p style={{ fontWeight: "bold" }}>Choose Payment Method:</p>
+        <div className="form-paymentmethod">
+          <p className="bold">Choose Payment Method:</p>
 
-          <label style={{ display: "flex", alignItems: "center", margin: "10px 0" }}>
+          <label className="methods">
             <input
               type="radio"
               value="UPI"
               {...register("paymentMethod", { required: "Select a payment method" })}
             />
-            <span style={{ marginLeft: "10px" }}>UPI</span>
+            <span className="left">UPI</span>
           </label>
 
-          <label style={{ display: "flex", alignItems: "center", margin: "10px 0" }}>
+          <label className="methods">
             <input
               type="radio"
               value="COD"
               {...register("paymentMethod", { required: "Select a payment method" })}
             />
-            <span style={{ marginLeft: "10px" }}>Cash on Delivery</span>
+            <span className="left">Cash on Delivery</span>
           </label>
 
           {errors.paymentMethod && (
-            <p style={{ color: "red" }}>{errors.paymentMethod.message}</p>
+            <p className="errorcolor">{errors.paymentMethod.message}</p>
           )}
         </div>
 
         <button
           type="submit"
-          style={{
-            background: "black",
-            color: "white",
-            padding: "12px 20px",
-            width: "100%",
-            border: "none",
-            borderRadius: "5px",
-            fontSize: "16px",
-          }}
+          className="btn-paynow"
         >
           Pay Now
         </button>
+        
+        
       </form>
 
-      <ToastContainer position="top-center" autoClose={3000} />
+      <ToastContainer position="top-center" autoClose={2000} />
      
     </div>
-  );
+
+    </div>
+    );
 };
 
 export default PaymentPage;
