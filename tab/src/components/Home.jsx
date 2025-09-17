@@ -205,11 +205,10 @@ function Home() {
           style={{
             alignSelf: "flex-end",
             // background: "red",
-             top: "10px",
-             right: "10px", 
+            margin:"7px 20px",
             fontWeight:"bold",
             color: "black",
-            padding: "6px 10px",
+            padding: "5px 5px",
             cursor: "pointer",
             border: "none",
             outline:"none",
@@ -221,7 +220,7 @@ function Home() {
           X
         </button>
 
-       <CartSliderContent/>
+       <CartSliderContent setIsCartOpen ={setIsCartOpen}/>
 
       </div>
 

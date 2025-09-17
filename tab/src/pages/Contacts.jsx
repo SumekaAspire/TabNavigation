@@ -55,7 +55,7 @@ const Contacts = () => {
             <h3>OUR OFFICE</h3>
             <p>
               <FaMapMarkerAlt className="icon" /> 123 Main Street, New Delhi,
-              <p>India - 603103.</p>
+              <span>India - 603103.</span>
             </p>
           </div>
         </div>

@@ -24,12 +24,18 @@ const CartPage = () => {
                <p style={{fontWeight:'bold'}}>(₹) : {item.price * item.quantity}</p>
                
                 <div className='cart-quantity'>
-                    <button onClick={()=> decreaseQty(item.id)}>-</button>
+                    <button 
+                      className="cart-incre-decre-btn"
+                      onClick={()=> decreaseQty(item.id)}
+                      >-</button>
                     <span>{item.quantity}</span>
                     {/* p - block element(quantity is not visible because of block level), span - inline element */}
-                    <button onClick={()=> increaseQty(item.id)}>+</button>
+                    <button 
+                      className="cart-incre-decre-btn"
+                      onClick={()=> increaseQty(item.id)}
+                      >+</button>
                 </div>   
-                <a onClick={()=> removeFromCart(item.id)} className='remove-Btn'>Remove</a>
+                <a onClick={()=> removeFromCart(item.id)}>Remove</a>
                 {/* <button onClick={()=> removeFromCart(item.id)}>Remove</button> */}
             </div>
         ))
