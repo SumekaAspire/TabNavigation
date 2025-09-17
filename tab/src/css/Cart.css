@@ -1,0 +1,95 @@
+.layout{
+   position: fixed;
+   top: 0;
+   left:0;
+   width: 100vw;
+   height: 100vh;
+   background: rgba(0, 0, 0, 0.5);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 1100;
+}
+.payment-content{
+   margin: 50px auto;
+   padding:50px;
+   width:50%;
+   text-align: center;
+   border:1px solid #271313;
+   background-color: #fff;
+
+   overflow-y: auto;
+   max-height: 70vh;
+   /* border-radius: 8px; */
+   
+}
+.form-mobileno{
+   text-align: left;
+   margin-bottom: 20px;
+}
+.form-mobileno label {
+  display: block; 
+  
+}
+
+
+.inputfield-mobileno{
+   width: 50%;
+   padding: 10px;
+   margin: 8px 0px;
+   border: 1px solid #221f1fff;
+        
+}
+
+.bold{
+    font-weight: bold;
+}
+.left{
+    margin-left: 10px;
+}
+.form-paymentmethod{
+   text-align: left;
+   margin-bottom: 20px;
+}
+.methods{
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.errorcolor{
+    color:red;
+}
+.btn-paynow{
+    background: black;
+    color: white;
+    padding: 12px 20px;
+    width: 40%;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+          
+}
+.btn-back{
+    background: transparent;
+    border:none;
+    cursor:pointer;
+    margin-bottom: 15px;
+    display: inline-flex;
+    align-items:center;
+    color:#f6f4f4;
+    font-size: 20px;
+    font-weight: bold;
+    outline: none !important;
+}
+.btn-back:hover{
+    color:chocolate;
+    font-weight: bold;
+}
+.backbtn-alignment{
+  position: absolute;
+  top: 9rem;
+  left: 20px;
+  
+   
+}
