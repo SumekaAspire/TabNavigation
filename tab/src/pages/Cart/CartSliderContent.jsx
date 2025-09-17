@@ -3,7 +3,7 @@ import { CartContext } from "../../context/CartContext";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-const CartSliderContent = () => {
+const CartSliderContent = ({setIsCartOpen}) => {
   const { cart, removeFromCart, clearCart, increaseQty, decreaseQty } =
     useContext(CartContext);
   const navigate =useNavigate();
@@ -18,6 +18,7 @@ const CartSliderContent = () => {
   const handleCheckout = () => {
     // toast.success("Your order will be placed.");
         toast.success("Redirecting to payment...");
+        // setIsCartOpen(false);
         navigate("/home/payment");
 
   };
