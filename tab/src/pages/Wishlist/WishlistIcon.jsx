@@ -1,19 +1,22 @@
-import React, { useContext } from 'react'
+import React, { useContext, useCallback,useMemo } from 'react'
 import { WishlistContext } from '../../context/WishlistContext'
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 
-const WishlistIcon = ({product}) => {
+const WishlistIcon = React.memo(({product}) => {
   const {wishlist, addToWishlist, removeFromWishlist} = useContext(WishlistContext);
-  const isInWishlist = wishlist.some((item) => item.id === product.id);
+  const isInWishlist = useMemo(
+    () => wishlist.some((item) => item.id === product.id),[wishlist,product.id]
+  );
 
-  const handleClick =()=>{
+  const handleClick =useCallback(()=> {
     if(isInWishlist){
         removeFromWishlist(product.id);
     }else{
         addToWishlist(product);
     }
-  }
+  
+  },[isInWishlist,product,addToWishlist,removeFromWishlist])
 
   return (
     <div>
@@ -27,6 +30,6 @@ const WishlistIcon = ({product}) => {
         </span>
     </div>
   )
-}
+})
 
 export default WishlistIcon;
