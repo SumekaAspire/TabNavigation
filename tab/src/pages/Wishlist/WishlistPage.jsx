@@ -1,4 +1,4 @@
-import React,{useState, useContext} from 'react'
+import React,{useState, useContext, useCallback} from 'react'
 import { WishlistContext } from '../../context/WishlistContext'
 import { CartContext } from '../../context/CartContext';
 import { FaHeart, FaShoppingCart, FaTrash } from "react-icons/fa";
@@ -9,6 +9,10 @@ const WishlistPage = () => {
     const {wishlist, removeFromWishlist} = useContext(WishlistContext);
     const {addToCart} = useContext(CartContext);
 
+    const handleAddToCart =useCallback((product)=> {
+        addToCart(product);
+        removeFromWishlist(product.id); //remove from wishlist
+    })
 
     if(wishlist.length === 0) {
         return <h2>Your Wishlist is empty...</h2>
@@ -27,10 +31,7 @@ const WishlistPage = () => {
             <img src={product.image} alt={product.title}/>
             <h4>{product.title}</h4>
             <p><strong>₹{product.price}</strong></p>
-            <button onClick={() => {
-              addToCart(product);
-              removeFromWishlist(product.id); //remove from wishlist
-            }}>Add to Cart</button>
+            <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
                
          </div>  
           )
