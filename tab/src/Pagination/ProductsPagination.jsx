@@ -43,4 +43,4 @@ const ProductsPagination = ({items,itemsPerPage, addToCart}) => {
   )
 }
 
-export default ProductsPagination
+export default React.memo(ProductsPagination);

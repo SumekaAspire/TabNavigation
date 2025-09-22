@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo} from "react";
 import { CartContext } from "../../context/CartContext";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -8,11 +8,14 @@ const CartSliderContent = ({setIsCartOpen}) => {
     useContext(CartContext);
   const navigate =useNavigate();
 
-  const totalAmount = cart.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
-  const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const totalAmount = useMemo(()=>{
+    return cart.reduce( (acc, item) => acc + item.price * item.quantity, 0  );
+  },[cart]);
+
+  const totalItems = useMemo(()=>{
+   return  cart.reduce((acc, item) => acc + item.quantity, 0);
+  },[cart]);
+
   if (cart.length === 0) return <h2> Your cart is Empty. </h2>;
 
   const handleCheckout = () => {

@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState,useMemo } from "react";
 
 const SearchBar = ({ data, searchKey = "title", renderResults }) => {
   const [search, setSearch] = useState("");
 
   // filter items based on search term
-  const filteredData = data.filter((item) =>
+  const filteredData = useMemo(() => {
+    return data.filter((item) =>
     item[searchKey]?.toLowerCase().includes(search.toLowerCase())
-  );
+  )},[data,searchKey,search]);
 
   return (
     <div>
@@ -28,4 +29,4 @@ const SearchBar = ({ data, searchKey = "title", renderResults }) => {
   );
 };
 
-export default SearchBar;
+export default React.memo(SearchBar);
