@@ -1,0 +1,39 @@
+command:
+mkdir backend  -in side project in terminal
+cd backend
+npm install express mongoose dotenv cors 
+npm install --save-dev nodemon 
+
+Files - Should not commit:
+1. node_modules/ → never commit (too big, can be installed via npm install)
+2. env → contains sensitive info (DB credentials, secrets)
+3. logs, .DS_Store
+
+//backend GitHub repo will look like this:
+
+backend/
+├── src/
+│   ├── index.js
+│   ├── routes/
+│   ├── controllers/
+│   ├── models/
+│   ├── middleware/
+│   └── config/
+├── package.json
+├── package-lock.json
+├── .gitignore
+├── .env.example   # (optional: add fake/sample env values)
+└── README.md
+!!! - create .gitignore file( inside the file mention - node_modules/) to ignore node_modules file while commiting
+
+
+
+
+CHANGES IN PACKAGE.JSON: 
+Change “start”: “nodemon app.js” in package.json, use npm start in terminal 
+
+or
+"dev": "nodemon src/index.js" , use npm dev in terminal
+
+start with index.js file
+
