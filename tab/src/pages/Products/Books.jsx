@@ -1,4 +1,4 @@
-import React ,{useState, useContext} from 'react'
+import React ,{useState, useContext, useCallback} from 'react'
 import useFetch from '../CustomHooks/useFetch';
 import { CartContext } from '../../context/CartContext';
 import WishlistIcon from '../Wishlist/WishlistIcon';
@@ -11,8 +11,23 @@ const Books = () => {
     const {addToCart} = useContext(CartContext);
     const [selectedProduct, setSelectedProduct] = useState(null);
     
-    if(loading) return <h3>Loading</h3>
+    
+const handleAddToCart = useCallback((e, product) => {
+    e.stopPropagation();//prevent open modal
+    addToCart(product);
+  }, [addToCart]);
+
+  const handleSelectProduct = useCallback((product) => {
+    setSelectedProduct(product);
+  }, []);
+
+  const handleCloseModal = useCallback(() => {
+    setSelectedProduct(null);
+  }, []);
+
+  if(loading) return <h3>Loading</h3>
     if(error) return <h3 style={{color:"red",}}>{error}</h3>
+
 
   return (
    <div>
@@ -26,7 +41,7 @@ const Books = () => {
           <div 
           key={product.id} 
           className="product-card"
-          onClick={() => setSelectedProduct(product)} // open modal
+          onClick={() => handleSelectProduct(product)} // open modal
           style={{ cursor: "pointer" }}>
 
            <div onClick={(e) => e.stopPropagation()}>
@@ -35,10 +50,7 @@ const Books = () => {
             <img src={product.thumbnail} alt={product.title} />
             <h4>{product.title}</h4>
             <p><strong>₹{product.price}</strong></p> 
-            <button onClick={(e) => {
-                e.stopPropagation(); // prevent modal open
-                addToCart(product);
-              }}>Add to Cart</button>
+            <button onClick={(e) => handleAddToCart(e,product)}>Add to Cart</button>
           </div>
         ))}
       </div>
@@ -47,7 +59,7 @@ const Books = () => {
        {/* ProductDetailModal */}
       <ProductModal
         product={selectedProduct}
-        onClose={() => setSelectedProduct(null)}
+        onClose={handleCloseModal}
       />
    </div>
   )

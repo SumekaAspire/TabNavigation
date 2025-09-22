@@ -1,4 +1,4 @@
-import React ,{useContext, useState} from 'react'
+import React ,{useContext, useState,useCallback} from 'react'
 import useFetch from '../CustomHooks/useFetch';
 import { CartContext } from '../../context/CartContext';
 import WishlistIcon from '../Wishlist/WishlistIcon';
@@ -11,6 +11,20 @@ const Electronics = () => {
     const {addToCart} = useContext(CartContext);
     const [selectedProduct, setSelectedProduct] = useState(null);
     
+  const handleAddToCart = useCallback((e, product) => {
+    e.stopPropagation();//prevent open modal
+    addToCart(product);
+  }, [addToCart]);
+
+  const handleSelectProduct = useCallback((product) => {
+    setSelectedProduct(product);
+  }, []);
+
+  const handleCloseModal = useCallback(() => {
+    setSelectedProduct(null);
+  }, []);
+
+
     if(loading) return <h3>Loading</h3>
     if(error) return <h3 style={{color:"red",}}>{error}</h3>
 
@@ -22,7 +36,7 @@ const Electronics = () => {
           <div 
             key={product.id}
             className="product-card"
-            onClick={() => setSelectedProduct(product)} // open modal
+            onClick={() => handleSelectProduct(product)} // open modal
             style={{ cursor: "pointer" }}> 
             <div onClick={(e) => e.stopPropagation()}>
               <WishlistIcon product={product} />
@@ -31,10 +45,7 @@ const Electronics = () => {
             <img src={product.thumbnail} alt={product.title} />
             <h4>{product.title}</h4>
             <p><strong>₹{product.price}</strong></p> 
-            <button onClick={(e) =>{ 
-                e.stopPropagation();
-                addToCart(product)
-                }}>Add to Cart</button>
+            <button onClick={(e) => handleAddToCart(e, product)}>Add to Cart</button>
           </div>
          
         ))}
@@ -43,7 +54,7 @@ const Electronics = () => {
       {/* ProductDetailModal */}
       <ProductModal
         product={selectedProduct}
-        onClose={() => setSelectedProduct(null)}
+        onClose={handleCloseModal}
       />
    </div>
   )

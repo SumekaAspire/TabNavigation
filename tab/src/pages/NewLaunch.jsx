@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext ,useCallback} from 'react'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
@@ -16,6 +16,12 @@ const { addToCart } = useContext(CartContext);
   const [electronics, loadingElectronics, errorElectronics] = useFetch({url: "https://fakestoreapi.com/products/category/electronics?limit=5",});
   const [jewelery, loadingJewelery, errorJewelery] = useFetch({url: "https://fakestoreapi.com/products/category/jewelery?limit=4",});
 
+
+
+  const handleAddToCart = useCallback((product) => {
+      
+      addToCart(product);
+    }, [addToCart]);
 
   if(loading || loadingElectronics ||loadingJewelery) return <h3>Loading</h3>
   if(error || errorElectronics || errorJewelery) return <h3 style={{color:"red",}}>{error || errorElectronics || errorJewelery}</h3>
@@ -104,7 +110,7 @@ const { addToCart } = useContext(CartContext);
             <img src={product.thumbnail} alt={product.title} />
             <h4>{product.title}</h4>
             <p><strong>₹{product.price}</strong></p> 
-            <button onClick={() => addToCart(product)}>Add to Cart</button>
+            <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
           </div>
         ))}
       </div>
@@ -117,7 +123,7 @@ const { addToCart } = useContext(CartContext);
             <img src={product.thumbnail} alt={product.title} />
             <h4>{product.title}</h4>
             <p><strong>₹{product.price}</strong></p> 
-            <button onClick={() => addToCart(product)}>Add to Cart</button>
+            <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
           </div>
         ))}
       </div>

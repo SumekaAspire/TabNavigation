@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useCallback } from 'react';
 import "../../css/HomePage.css";
 import { CartContext } from '../../context/CartContext';
 import {FaRegHeart, FaHeart } from "react-icons/fa"; 
@@ -32,6 +32,20 @@ const Products = () => {
     getProducts();
   }, []);
 
+
+  const handleAddToCart = useCallback((e, product) => {
+      e.stopPropagation();//prevent open modal
+      addToCart(product);
+    }, [addToCart]);
+  
+    const handleSelectProduct = useCallback((product) => {
+      setSelectedProduct(product);
+    }, []);
+  
+    const handleCloseModal = useCallback(() => {
+      setSelectedProduct(null);
+    }, []);
+
   if (loading) return <h2>Loading...</h2>;
   if (error) return <h2 style={{ color: 'red' }}>{error}</h2>;
 
@@ -45,7 +59,7 @@ const Products = () => {
              <div 
                key={product.id}
                className="product-card"
-               onClick={() => setSelectedProduct(product)} // open modal
+               onClick={() => handleSelectProduct(product)} // open modal
                style={{ cursor: "pointer" }}> 
           
             {/* <FaRegHeart size={18}/> */}
@@ -69,10 +83,7 @@ const Products = () => {
             <h4>{product.title}</h4>
             <p><strong>₹{product.price}</strong></p> 
             {/* strong - screen readers and seo friendly */}
-            <button onClick={(e) => {
-              e.stopPropagation();
-              addToCart(product);}
-            }>Add to Cart</button>
+            <button onClick={(e) => handleAddToCart(e,product)}>Add to Cart</button>
           </div>
          )
       
@@ -81,7 +92,7 @@ const Products = () => {
       {/* ProductDetailModal */}
       <ProductModal
         product={selectedProduct}
-        onClose={() => setSelectedProduct(null)}
+        onClose={handleCloseModal}
       />
       <br /><br />
     </div>

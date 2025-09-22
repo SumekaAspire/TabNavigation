@@ -1,10 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext ,useCallback} from "react";
 import { CartContext } from "../context/CartContext";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import "../css/ProductDetail.css"
 
 const ProductDetailModal = ({ product, onClose }) => {
   const { addToCart } = useContext(CartContext);
+
+//hooks always run at top level
+  const handleAddToCart = useCallback(() => {
+    addToCart(product);
+  }, [addToCart, product]);
 
   if (!product) return null; // don't render if no product is selected
 
@@ -43,10 +48,7 @@ const ProductDetailModal = ({ product, onClose }) => {
         )}
 
         <button
-          onClick={() => {
-            addToCart(product);
-            // onClose();
-          }}
+          onClick={handleAddToCart}
           className="add-cart"
         >
           Add to Cart
@@ -56,4 +58,4 @@ const ProductDetailModal = ({ product, onClose }) => {
   );
 };
 
-export default ProductDetailModal;
+export default React.memo(ProductDetailModal);

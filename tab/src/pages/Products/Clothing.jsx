@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState , useCallback, useMemo} from "react";
 import useFetch from "../CustomHooks/useFetch";
 import { CartContext } from "../../context/CartContext";
 import WishlistIcon from "../Wishlist/WishlistIcon";
@@ -10,13 +10,36 @@ const Clothing = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [search, setSearch] = useState("");
 
+  
+    const handleSelectProduct = useCallback((product) => {
+      setSelectedProduct(product);
+    }, []);
+  
+    const handleCloseModal = useCallback(() => {
+      setSelectedProduct(null);
+    }, []);
+  
+    const handleAddToCart = useCallback((e, product) => {
+      e.stopPropagation(); //prevent open modal
+      addToCart(product);
+    }, [addToCart]);
+  
+  
+  const filteredProducts = useMemo(( )=>{
+    return products.filter((product) =>
+    product.title.toLowerCase().includes(search.toLowerCase())
+  );
+  },[products,search])
+
+  // useCallback for search input
+  const handleSearchChange = useCallback((e) => {
+    setSearch(e.target.value);
+  }, []);
+
   if (loading) return <h3>Loading</h3>;
   if (error) return <h3 style={{ color: "red" }}>{error}</h3>;
 
   
-  const filteredProducts = products.filter((product) =>
-    product.title.toLowerCase().includes(search.toLowerCase())
-  );
 
   return (
     <div>
@@ -27,7 +50,7 @@ const Clothing = () => {
         type="text"
         placeholder="Search products..."
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={handleSearchChange}
         style={{ padding: 8, width: "30%", margin: "20px",  }}
       />
 
@@ -39,7 +62,7 @@ const Clothing = () => {
             <div
               key={product.id}
               className="product-card"
-              onClick={() => setSelectedProduct(product)} // open modal
+              onClick={() => handleSelectProduct(product)} // open modal
               style={{ cursor: "pointer" }}
             >
               <div onClick={(e) => e.stopPropagation()}>
@@ -51,10 +74,7 @@ const Clothing = () => {
                 <strong>₹{product.price}</strong>
               </p>
               <button
-                onClick={(e) => {
-                  e.stopPropagation(); // prevent modal open
-                  addToCart(product);
-                }}
+                onClick={(e) => handleAddToCart(e, product)}
               >
                 Add to Cart
               </button>
@@ -64,7 +84,7 @@ const Clothing = () => {
       </div>
 
       {/* ProductDetailModal */}
-      <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />
+      <ProductModal product={selectedProduct} onClose={handleCloseModal} />
     </div>
   );
 };
